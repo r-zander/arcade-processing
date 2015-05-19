@@ -11,7 +11,7 @@ public abstract class AbstractScreen {
 
     private final Arcade app;
 
-    public void activate() {};
+    public void setup() {};
 
     public abstract void draw();
 

@@ -1,36 +1,42 @@
 package de.xielong.arcade;
 
-import static de.xielong.arcade.ArcadeConstants.*;
+import static de.xielong.arcade.ArcadeConstants.ASPECT_RATIO;
+import hermes.World;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.experimental.Accessors;
 import lombok.experimental.PackagePrivate;
 import processing.core.PApplet;
 
+@Getter
+@Accessors(fluent = true)
 public class Arcade extends PApplet {
 
-    @PackagePrivate
-    Figures           figures;
+    /**
+     * Currently running instance
+     */
+    public static Arcade      $;
 
-    @PackagePrivate
-    Direction         screenOrientation;
+    private Figures           figures;
 
-    @PackagePrivate
-    final List<Block> blocks = new LinkedList<>();
+    private Direction         screenOrientation;
 
-    @PackagePrivate
-    Unit              unit;
+    private final List<Block> blocks = new LinkedList<>();
 
-    @PackagePrivate
-    Screens           screens;
+    private Unit              unit;
 
-    @PackagePrivate
-    AbstractScreen    screen;
+    private Screens           screens;
+
+    private World             currentWorld;
 
     @Override
     public void setup() {
+        $ = this;
+
         size(displayWidth, round(displayWidth / ASPECT_RATIO));
         noCursor();
 
@@ -39,27 +45,27 @@ public class Arcade extends PApplet {
         unit = new Unit(this);
         figures = new Figures(this);
 
-        screens = new Screens(this);
+        screens = new Screens();
 
-        setScreen(screens.START);
+        setCurrentWorld(screens.START);
 
         ellipseMode(CORNER);
     }
 
-    private void setScreen(AbstractScreen newScreen) {
-        if (screen != newScreen) {
-            screen = newScreen;
-            screen.activate();
+    private void setCurrentWorld(World newScreen) {
+        if (currentWorld != newScreen) {
+            currentWorld = newScreen;
+            currentWorld.setup();
         }
     }
 
     @Override
     public void draw() {
-        screen.draw();
+        currentWorld.draw();
     }
 
     @PackagePrivate
-    void drawGame() {
+    public void drawGame() {
         background(ArcadeConstants.Colors.BACKGROUND);
 
         for (Iterator<Block> iterator = blocks.iterator(); iterator.hasNext();) {
@@ -110,7 +116,7 @@ public class Arcade extends PApplet {
 
         switch (unit.update(getGravityDirection(), blocks)) {
             case DEAD:
-                setScreen(screens.DEATH);
+                setCurrentWorld(screens.DEATH);
                 break;
             default:
                 break;
@@ -124,13 +130,13 @@ public class Arcade extends PApplet {
     public void keyPressed() {
         switch (key) {
             case ' ':
-                if (screen == screens.DEATH || screen == screens.START) {
-                    setScreen(screens.GAME);
+                if (currentWorld == screens.DEATH || currentWorld == screens.START) {
+                    setCurrentWorld(screens.GAME);
                 }
                 break;
             case ESC:
-                if (screen != screens.DEATH) {
-                    setScreen(screens.DEATH);
+                if (currentWorld != screens.DEATH) {
+                    setCurrentWorld(screens.DEATH);
                     // Don't pass ESC through
                     key = 0;
                 }
@@ -150,8 +156,8 @@ public class Arcade extends PApplet {
     public void mousePressed() {
         switch (mouseButton) {
             case LEFT:
-                if (screen == screens.DEATH || screen == screens.START) {
-                    setScreen(screens.GAME);
+                if (currentWorld == screens.DEATH || currentWorld == screens.START) {
+                    setCurrentWorld(screens.GAME);
                 }
                 break;
             case RIGHT:
