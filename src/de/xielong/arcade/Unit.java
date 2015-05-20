@@ -1,7 +1,11 @@
 package de.xielong.arcade;
 
-import static de.xielong.arcade.ArcadeConstants.*;
-import static processing.core.PApplet.*;
+import static de.xielong.arcade.ArcadeConstants.GRAVITY;
+import static de.xielong.arcade.ArcadeConstants.JUMP_FRAMES;
+import static de.xielong.arcade.ArcadeConstants.MAX_JUMP_STRENGTH;
+import static de.xielong.arcade.ArcadeConstants.calculateJumpY;
+import static processing.core.PApplet.abs;
+import static processing.core.PApplet.map;
 
 import java.util.List;
 
@@ -40,7 +44,6 @@ public class Unit extends Block {
     }
 
     public void jump() {
-        System.out.println("jump");
         if (state == State.JUMPING) {
             if (jumpStrength < MAX_JUMP_STRENGTH) {
                 jumpStrength++;
@@ -65,8 +68,6 @@ public class Unit extends Block {
                 return updateState(State.FALLING);
             }
             float mappedStrength = map(jumpStrength, 4, MAX_JUMP_STRENGTH, 2, 6);
-            System.out.println("Frame: " + stateFrames + " | Strength (Mapped): " + jumpStrength + " ("
-                    + mappedStrength + ") | yOffset: " + mappedStrength * calculateJumpY(stateFrames));
             offset(gravityDirection.invert(), mappedStrength * calculateJumpY(stateFrames));
             draw();
             return state;

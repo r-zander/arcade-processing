@@ -1,6 +1,6 @@
 package de.xielong.arcade.worlds;
 
-import static de.xielong.arcade.Arcade.$;
+import static de.xielong.arcade.MainActivity.$;
 import hermes.World;
 import de.xielong.arcade.Corner;
 import de.xielong.arcade.GroundBlock;

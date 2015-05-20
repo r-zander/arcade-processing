@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import processing.core.PApplet;
 
 @Data
-@AllArgsConstructor
+@AllArgsConstructor(suppressConstructorProperties = true)
 @NoArgsConstructor
 public class Vector {
 

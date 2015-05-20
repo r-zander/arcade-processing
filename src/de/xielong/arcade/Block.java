@@ -1,14 +1,16 @@
 package de.xielong.arcade;
 
-import de.xielong.arcade.ArcadeConstants.Colors;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import processing.core.PApplet;
+import de.xielong.arcade.ArcadeConstants.Colors;
 
 @Data
+@RequiredArgsConstructor(suppressConstructorProperties = true)
 @Accessors(fluent = true)
 public class Block {
 
