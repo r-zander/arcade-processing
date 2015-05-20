@@ -1,14 +1,20 @@
 package de.xielong.arcade;
 
-import static de.xielong.arcade.ArcadeConstants.*;
-import static processing.core.PApplet.*;
-import static processing.core.PConstants.*;
-import de.xielong.arcade.ArcadeConstants.Colors;
+import static de.xielong.arcade.ArcadeConstants.START_SPEED;
+import static processing.core.PApplet.floor;
+import static processing.core.PApplet.round;
+import static processing.core.PConstants.BOTTOM;
+import static processing.core.PConstants.CENTER;
+import static processing.core.PConstants.LEFT;
+import static processing.core.PConstants.RIGHT;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import processing.core.PApplet;
+import de.xielong.arcade.ArcadeConstants.Colors;
 
 @Data
+@RequiredArgsConstructor(suppressConstructorProperties = true)
 @Accessors(fluent = true)
 public class Figures {
 

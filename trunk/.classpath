@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="libs/android-core.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/projectlombok/lombok/0.12.0/lombok-0.12.0.jar"/>
-	<classpathentry kind="var" path="PROCESSING_HOME/core/library/core.jar"/>
 	<classpathentry kind="var" path="PROCESSING_LIBRARIES/hermes/library/hermes.jar" sourcepath="/PROCESSING_LIBRARIES/hermes/src"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
