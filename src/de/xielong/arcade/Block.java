@@ -8,6 +8,10 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 import processing.core.PApplet;
 import de.xielong.arcade.ArcadeConstants.Colors;
+import de.xielong.arcade.enums.Corner;
+import de.xielong.arcade.enums.Direction;
+import de.xielong.arcade.enums.Position;
+import de.xielong.arcade.enums.Shape;
 
 @Data
 @RequiredArgsConstructor(suppressConstructorProperties = true)

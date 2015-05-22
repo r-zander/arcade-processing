@@ -1,5 +1,7 @@
 package de.xielong.arcade;
 
+import de.xielong.arcade.enums.Direction;
+import de.xielong.arcade.enums.Shape;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import processing.core.PApplet;

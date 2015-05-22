@@ -5,7 +5,7 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="libs/android-core.jar"/>
+	<classpathentry kind="lib" path="libs/android-core.jar" sourcepath="C:/Users/rza/Documents/Processing/modes/AndroidMode/processing-android-latest/src"/>
 	<classpathentry kind="var" path="M2_REPO/org/projectlombok/lombok/0.12.0/lombok-0.12.0.jar"/>
 	<classpathentry kind="var" path="PROCESSING_LIBRARIES/hermes/library/hermes.jar" sourcepath="/PROCESSING_LIBRARIES/hermes/src"/>
 	<classpathentry kind="output" path="bin/classes"/>
