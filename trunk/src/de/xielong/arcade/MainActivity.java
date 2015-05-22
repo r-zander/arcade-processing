@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 import lombok.experimental.PackagePrivate;
 import processing.core.PApplet;
+import de.xielong.arcade.enums.Direction;
 
 @Getter
 @Accessors(fluent = true)
@@ -41,7 +42,7 @@ public class MainActivity extends PApplet {
 
         screenOrientation = Direction.BOTTOM;
 
-        unit = new Unit(this);
+        unit = new Unit();
         figures = new Figures(this);
 
         screens = new Screens();
@@ -53,8 +54,11 @@ public class MainActivity extends PApplet {
 
     private void setCurrentWorld(World newScreen) {
         if (currentWorld != newScreen) {
+            if (currentWorld != null) {
+                currentWorld.deactivate();
+            }
             currentWorld = newScreen;
-            currentWorld.setup();
+            currentWorld.start();
         }
     }
 

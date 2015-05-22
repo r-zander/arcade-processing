@@ -4,21 +4,23 @@ import static de.xielong.arcade.ArcadeConstants.GRAVITY;
 import static de.xielong.arcade.ArcadeConstants.JUMP_FRAMES;
 import static de.xielong.arcade.ArcadeConstants.MAX_JUMP_STRENGTH;
 import static de.xielong.arcade.ArcadeConstants.calculateJumpY;
+import static de.xielong.arcade.Beings.setBottom;
+import static de.xielong.arcade.MainActivity.$;
 import static processing.core.PApplet.abs;
 import static processing.core.PApplet.map;
-
-import java.util.List;
-
+import hermes.hshape.HCircle;
+import hermes.physics.MassedBeing;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PVector;
+import de.xielong.arcade.enums.Direction;
 
 @Data
 @Accessors(chain = true)
-public class Unit extends Block {
+public class Unit extends MassedBeing {
 
     @Setter(AccessLevel.NONE)
     private State state;
@@ -30,17 +32,14 @@ public class Unit extends Block {
 
     private int   jumpStrength;
 
-    public Unit(PApplet app) {
-        super(app, Shape.ELLIPSE);
-
-        width(50);
-        height(50);
+    public Unit() {
+        super(new HCircle(new PVector(), 25), new PVector(), 10, 1);
     }
 
     public void resetPosition() {
         updateState(State.FALLING);
-        bottom(app().height - 300);
-        left(150);
+        setBottom(this, $.height - 300);
+        setX(150);
     }
 
     public void jump() {
@@ -54,10 +53,12 @@ public class Unit extends Block {
         }
     }
 
-    public State update(Direction gravityDirection, List<Block> blocks) {
+    @Override
+    protected void update() {
         stateFrames++;
         /*
          * Check if the unit is still inside game boundaries
+         * TODO Abbilden in einem Interactor
          */
         if (right() < 0 || left() > app().width || bottom() < 0 || top() > app().height) {
             return updateState(State.DEAD);

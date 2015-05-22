@@ -1,4 +1,4 @@
-package de.xielong.arcade;
+package de.xielong.arcade.enums;
 
 public enum Shape {
     RECTANGLE,

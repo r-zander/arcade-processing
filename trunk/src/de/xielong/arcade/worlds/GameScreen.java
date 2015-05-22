@@ -2,8 +2,8 @@ package de.xielong.arcade.worlds;
 
 import static de.xielong.arcade.MainActivity.$;
 import hermes.World;
-import de.xielong.arcade.Corner;
 import de.xielong.arcade.GroundBlock;
+import de.xielong.arcade.enums.Corner;
 
 public class GameScreen extends World {
 
